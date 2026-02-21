@@ -180,15 +180,14 @@ z-index:2;
 .client-node .pfp{
 width:76px;height:76px;
 overflow:hidden;
-filter:grayscale(1);opacity:.85;
+filter:none;
+opacity:1;
 transition:.35s var(--ease);
 background:var(--surface);
 flex-shrink:0;
+box-shadow: 0 0 3px rgba(139, 92, 246, 0.7);
 }
-.client-node .pfp img{
-width:100%;height:100%;
-object-fit:cover;display:block;
-}
+
 .client-node .cname{
 font-size:10px;font-weight:700;
 color:#1e293b;letter-spacing:.8px;
@@ -199,9 +198,6 @@ transition:.3s var(--ease);text-align:center;
 transform:scale(1.1) rotate(0deg);
 z-index:10;
 box-shadow:5px 12px 25px rgba(0,0,0,0.8);
-}
-.client-node:hover .pfp{
-filter:none;opacity:1;
 }
 .client-node:hover .cname{color:var(--purple)}
 
@@ -246,10 +242,6 @@ background:linear-gradient(135deg,#c4b5fd,#7c3aed);
 -webkit-background-clip:text;-webkit-text-fill-color:transparent;
 background-clip:text;
 }
-.price-card p{color:var(--muted);font-size:16px;line-height:1.65}
-
-/* --- Pricing: use a cleaner font (Poppins) for cards --- */
-/* This is already included in the .price-card class */
 
 .order-now-wrap{display:flex;justify-content:center;margin-top:26px}
 .order-now-btn{
@@ -493,7 +485,7 @@ margin:0 8vw;
   <div class="socials">
     <a href="https://x.com/Mxnafnbr" target="_blank" title="X">X</a>
     <a href="https://discord.com/users/1048685109353652345" target="_blank" title="Discord">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.001.022.015.04.033.055a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12...
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.001.022.015.04.033.055a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 0 .077-.01c3.928 1.793 8.18 1.793 12...
 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
     </a>
   </div>
