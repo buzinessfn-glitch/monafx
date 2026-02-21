@@ -432,6 +432,50 @@ height:1px;
 background:linear-gradient(90deg,transparent,rgba(139,92,246,.2),transparent);
 margin:0 8vw;
 }
+
+/* ---- numbers section ---- */
+.numbers-section {
+  padding: 110px 8vw;
+  text-align: center;
+}
+
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.number-box {
+  background: linear-gradient(145deg, #1c1a2e, #111119);
+  padding: 40px 20px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(139, 92, 246, 0.13);
+  transition: .4s var(--ease);
+}
+
+.number-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 24px 70px rgba(139, 92, 246, 0.22), 0 0 40px var(--purple-soft);
+  border-color: rgba(139, 92, 246, 0.38);
+}
+
+.number {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #c4b5fd, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.description {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.65;
+}
 </style>
 </head>
 <body>
@@ -458,6 +502,30 @@ margin:0 8vw;
 <section class="hero">
   <h1 class="reveal">Mona<span>FX</span></h1>
   <p class="reveal">Just what you need and more</p>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="numbers-section reveal">
+  <h2>Numbers That Speak</h2>
+  <div class="numbers-grid">
+    <div class="number-box">
+      <div class="number">150+</div>
+      <div class="description">projects completed</div>
+    </div>
+    <div class="number-box">
+      <div class="number">70+</div>
+      <div class="description">content creators served</div>
+    </div>
+    <div class="number-box">
+      <div class="number">250k</div>
+      <div class="description">total views generated</div>
+    </div>
+    <div class="number-box">
+      <div class="number">99%</div>
+      <div class="description">client satisfaction</div>
+    </div>
+  </div>
 </section>
 
 <div class="section-divider"></div>
