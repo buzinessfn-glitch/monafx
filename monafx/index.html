@@ -8,14 +8,14 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{
-  --bg:#0a0a1a;
-  --surface:#1a1a2a;
-  --surface-soft:#2a2a3a;
+  --bg: #0a0a2a; /* Dark blue with a touch of black */
+  --surface: #1a1a3a;
+  --surface-soft: #2a2a4a;
   --glass:rgba(255,255,255,.05);
-  --purple:#3a4a8a;
-  --purple-soft:rgba(58, 74, 138, .25);
+  --purple:#1e3a8a;
+  --purple-soft:rgba(30, 58, 138, .25);
   --text:#ffffff;
-  --muted:#a0a0b0;
+  --muted:#8892b0;
   --accent:#ffffff;
   --radius:18px;
   --ease:cubic-bezier(.4,0,.2,1);
@@ -39,57 +39,6 @@ body{
   color: var(--text);
   overflow-x: hidden;
   scroll-behavior: smooth;
-}
-
-body.hidden {
-  overflow: hidden;
-}
-
-#intro-animation {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  backdrop-filter: blur(10px);
-  animation: fadeOut 4s ease-in-out forwards;
-}
-
-.profile-pic {
-  width: 200px;
-  height: 200px;
-  background-image: url('monapfp.jpg');
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-  position: relative;
-}
-
-.key {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  background: #ff0000; /* example color, should match the key's appearance */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: slideIn 2s ease-in-out forwards;
-}
-
-@keyframes fadeOut {
-  0% { opacity: 1; }
-  100% { opacity: 0; display: none; }
-}
-
-@keyframes slideIn {
-  0% { top: 50%; left: 50%; opacity: 0; }
-  50% { opacity: 1; }
-  100% { top: 20%; left: 20%; opacity: 0; }
 }
 
 .reveal{
@@ -941,13 +890,69 @@ footer p {
   font-weight: 800;
   color: var(--purple);
 }
+
+/* Intro animation overlay */
+#intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+#intro-overlay.visible {
+  display: flex;
+}
+
+#intro-overlay.fade-out {
+  opacity: 0;
+}
+
+#intro-content {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+#intro-pfp {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+}
+
+#intro-box {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: var(--surface);
+  border-radius: 10px;
+  top: 100%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+#intro-box.slide-in {
+  opacity: 1;
+  top: 70%;
+  left: 70%;
+  transform: translate(-50%, -50%) scale(1);
+}
 </style>
 </head>
-<body class="hidden">
-<div id="intro-animation">
-  <div class="profile-pic"></div>
-  <div class="key"></div>
-</div>
+<body>
 
 <div class="nav" id="nav">
   <div class="brand" ondblclick="openAdminLogin()" title="">
@@ -1229,6 +1234,14 @@ footer p {
   </div>
 </div>
 
+<!-- Intro animation overlay -->
+<div id="intro-overlay">
+  <div id="intro-content">
+    <img src="monapfp.jpg" alt="Mona" id="intro-pfp">
+    <div id="intro-box"></div>
+  </div>
+</div>
+
 <script>
 // nav scroll
 const nav = document.getElementById('nav');
@@ -1496,12 +1509,34 @@ document.querySelectorAll('.modal-overlay').forEach(m => {
 });
 loadReviews();
 
-// Remove hidden class after animation
-window.addEventListener('load', function() {
-  setTimeout(function() {
-    document.body.classList.remove('hidden');
-    document.getElementById('intro-animation').style.display = 'none';
-  }, 4000); // match this with the animation duration
+// Intro animation
+document.addEventListener('DOMContentLoaded', function() {
+  const introOverlay = document.getElementById('intro-overlay');
+  const introBox = document.getElementById('intro-box');
+  const body = document.body;
+
+  // Prevent scrolling during the animation
+  body.style.overflow = 'hidden';
+
+  // Show the overlay
+  introOverlay.classList.add('visible');
+
+  // Animate the box sliding in
+  setTimeout(() => {
+    introBox.classList.add('slide-in');
+  }, 500);
+
+  // Fade out the overlay after the box has slid in
+  setTimeout(() => {
+    introOverlay.classList.add('fade-out');
+  }, 1500);
+
+  // Hide the overlay completely and re-enable scrolling after fading out
+  setTimeout(() => {
+    introOverlay.classList.remove('visible');
+    introOverlay.classList.add('hidden');
+    body.style.overflow = '';
+  }, 2500);
 });
 </script>
 
