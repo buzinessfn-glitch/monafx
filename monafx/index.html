@@ -8,14 +8,14 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{
-  --bg:#0a192f;
-  --surface:#112240;
-  --surface-soft:#1a2b4d;
+  --bg:#0a0a1a;
+  --surface:#1a1a2a;
+  --surface-soft:#2a2a3a;
   --glass:rgba(255,255,255,.05);
-  --purple:#1e3a8a;
-  --purple-soft:rgba(30, 58, 138, .25);
+  --purple:#3a4a8a;
+  --purple-soft:rgba(58, 74, 138, .25);
   --text:#ffffff;
-  --muted:#8892b0;
+  --muted:#a0a0b0;
   --accent:#ffffff;
   --radius:18px;
   --ease:cubic-bezier(.4,0,.2,1);
@@ -39,6 +39,57 @@ body{
   color: var(--text);
   overflow-x: hidden;
   scroll-behavior: smooth;
+}
+
+body.hidden {
+  overflow: hidden;
+}
+
+#intro-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  animation: fadeOut 4s ease-in-out forwards;
+}
+
+.profile-pic {
+  width: 200px;
+  height: 200px;
+  background-image: url('monapfp.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  position: relative;
+}
+
+.key {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #ff0000; /* example color, should match the key's appearance */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: slideIn 2s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; display: none; }
+}
+
+@keyframes slideIn {
+  0% { top: 50%; left: 50%; opacity: 0; }
+  50% { opacity: 1; }
+  100% { top: 20%; left: 20%; opacity: 0; }
 }
 
 .reveal{
@@ -892,7 +943,11 @@ footer p {
 }
 </style>
 </head>
-<body>
+<body class="hidden">
+<div id="intro-animation">
+  <div class="profile-pic"></div>
+  <div class="key"></div>
+</div>
 
 <div class="nav" id="nav">
   <div class="brand" ondblclick="openAdminLogin()" title="">
@@ -1440,6 +1495,14 @@ document.querySelectorAll('.modal-overlay').forEach(m => {
   m.addEventListener('click', e => { if(e.target===m) m.classList.remove('active'); });
 });
 loadReviews();
+
+// Remove hidden class after animation
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    document.body.classList.remove('hidden');
+    document.getElementById('intro-animation').style.display = 'none';
+  }, 4000); // match this with the animation duration
+});
 </script>
 
 <div style="
