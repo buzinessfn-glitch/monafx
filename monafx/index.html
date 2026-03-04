@@ -269,19 +269,44 @@ h2{
   box-shadow:0 8px 30px rgba(30, 58, 138, .3),0 0 0 1px rgba(30, 58, 138, .3);
 }
 
-/* ---- clients MONA shape ---- */
+/* ---- clients slider ---- */
 .clients-slider {
-  overflow: hidden;
   width: 100%;
+  overflow: hidden;
+  position: relative;
   margin: 0 auto;
 }
 
 .clients-slider-inner {
   display: flex;
-  width: fit-content;
   animation: slide 30s linear infinite;
-  gap: 20px;
-  padding: 20px 0;
+}
+
+.client-item {
+  flex-shrink: 0;
+  width: 150px;
+  margin: 0 10px;
+  text-align: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.client-item:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+.client-item img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.client-item span {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 @keyframes slide {
@@ -291,84 +316,6 @@ h2{
   100% {
     transform: translateX(-50%);
   }
-}
-
-/* Pinboard Client Styling */
-.client-node{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:9px;
-  text-decoration:none;
-  color:inherit;
-  background:#ffffff;
-  padding:12px 12px 18px 12px;
-  border-radius:2px;
-  box-shadow:3px 5px 15px rgba(255, 255, 255, 0.6);
-  position:relative;
-  transition:.3s var(--ease);
-  margin-right: 20px;
-  flex-shrink: 0;
-}
-
-/* The pushpin */
-.client-node::before {
-  content:'';
-  position:absolute;
-  top:-6px;
-  left:50%;
-  transform:translateX(-50%);
-  width:14px;
-  height:14px;
-  background:radial-gradient(circle at 30% 30%, #ef4444, #991b1b);
-  border-radius:50%;
-  box-shadow:inset -2px -2px 4px rgba(0,0,0,0.3), 2px 3px 5px rgba(0,0,0,0.5);
-  z-index:2;
-}
-
-/* Slight rotations for natural pinboard look */
-.client-node:nth-child(even) {
-  transform:rotate(4deg);
-}
-
-.client-node:nth-child(odd) {
-  transform:rotate(-3deg);
-}
-
-.client-node:nth-child(3n) {
-  transform:rotate(2deg);
-}
-
-.client-node .pfp{
-  width:76px;
-  height:76px;
-  overflow:hidden;
-  filter:none;
-  opacity:1;
-  transition:.35s var(--ease);
-  background:var(--surface);
-  flex-shrink:0;
-  box-shadow: 0 0 3px rgba(30, 58, 138, 0.7);
-}
-
-.client-node .cname{
-  font-size:10px;
-  font-weight:700;
-  color:#000000;
-  letter-spacing:.8px;
-  text-transform:uppercase;
-  transition:.3s var(--ease);
-  text-align:center;
-}
-
-.client-node:hover {
-  transform:scale(1.1) rotate(0deg);
-  z-index:10;
-  box-shadow:5px 12px 25px rgba(0,0,0,0.8);
-}
-
-.client-node:hover .cname{
-  color:var(--purple)
 }
 
 /* ---- pricing ---- */
@@ -1020,197 +967,99 @@ footer p {
   <h2>Clients</h2>
   <div class="clients-slider">
     <div class="clients-slider-inner">
-      <!-- Original client nodes -->
-      <a class="client-node" href="https://x.com/Asafnr" target="_blank">
+      <a class="client-item" href="https://x.com/Asafnr" target="_blank">
         <div class="pfp"><img src="asapfp.jpg" alt="Asa"></div>
         <span class="cname">Asa</span>
       </a>
-      <a class="client-node" href="https://x.com/fastroki" target="_blank">
+      <a class="client-item" href="https://x.com/fastroki" target="_blank">
         <div class="pfp"><img src="fastrokipfp.jpg" alt="Fastroki"></div>
         <span class="cname">Fastroki</span>
       </a>
-      <a class="client-node" href="https://x.com/F1N4IK22" target="_blank">
+      <a class="client-item" href="https://x.com/F1N4IK22" target="_blank">
         <div class="pfp"><img src="f1npfp.jpg" alt="F1N4IK"></div>
         <span class="cname">F1N4IK</span>
       </a>
-      <a class="client-node" href="https://x.com/Rezyfnxx" target="_blank">
+      <a class="client-item" href="https://x.com/Rezyfnxx" target="_blank">
         <div class="pfp"><img src="rezypfp.jpg" alt="Rezy"></div>
         <span class="cname">Rezy</span>
       </a>
-      <a class="client-node" href="https://x.com/kantrifnn" target="_blank">
+      <a class="client-item" href="https://x.com/kantrifnn" target="_blank">
         <div class="pfp"><img src="kantripfp.jpg" alt="Kantri"></div>
         <span class="cname">Kantri</span>
       </a>
-      <a class="client-node" href="https://x.com/DeyyFN" target="_blank">
+      <a class="client-item" href="https://x.com/DeyyFN" target="_blank">
         <div class="pfp"><img src="deyypfp.jpg" alt="Deyy"></div>
         <span class="cname">Deyy</span>
       </a>
-      <a class="client-node" href="https://x.com/NeFrizi" target="_blank">
+      <a class="client-item" href="https://x.com/NeFrizi" target="_blank">
         <div class="pfp"><img src="nefrizipfp.jpg" alt="NeFrizi"></div>
         <span class="cname">NeFrizi</span>
       </a>
-      <a class="client-node" href="https://x.com/Spexxfnr" target="_blank">
+      <a class="client-item" href="https://x.com/Spexxfnr" target="_blank">
         <div class="pfp"><img src="spexpfp.jpg" alt="Spexx"></div>
         <span class="cname">Spexx</span>
       </a>
-      <a class="client-node" href="https://x.com/Flokito_" target="_blank">
+      <a class="client-item" href="https://x.com/Flokito_" target="_blank">
         <div class="pfp"><img src="flokpfp.jpg" alt="Flokito"></div>
         <span class="cname">Flokito</span>
       </a>
-      <a class="client-node" href="https://x.com/dandepuzo" target="_blank">
+      <a class="client-item" href="https://x.com/dandepuzo" target="_blank">
         <div class="pfp"><img src="dandepfp.jpg" alt="dandepuzo"></div>
         <span class="cname">Dandepuzo</span>
       </a>
-      <a class="client-node" href="https://x.com/Rad3on2" target="_blank">
+      <a class="client-item" href="https://x.com/Rad3on2" target="_blank">
         <div class="pfp"><img src="radpfp.jpg" alt="Rad3on"></div>
         <span class="cname">Rad3on</span>
       </a>
-      <a class="client-node" href="https://x.com/skrillgaard" target="_blank">
+      <a class="client-item" href="https://x.com/skrillgaard" target="_blank">
         <div class="pfp"><img src="skrillpfp.jpg" alt="Skrillgaard"></div>
         <span class="cname">Skrillgaard</span>
       </a>
-      <a class="client-node" href="https://x.com/slepzi300" target="_blank">
+      <a class="client-item" href="https://x.com/slepzi300" target="_blank">
         <div class="pfp"><img src="slepzipfp.jpg" alt="Slepzi"></div>
         <span class="cname">Slepzi</span>
       </a>
-      <a class="client-node" href="https://x.com/BirkFNBR" target="_blank">
+      <a class="client-item" href="https://x.com/BirkFNBR" target="_blank">
         <div class="pfp"><img src="birkpfp.jpg" alt="Birk"></div>
         <span class="cname">Birk</span>
       </a>
-      <a class="client-node" href="https://x.com/Mald1sFNBR" target="_blank">
+      <a class="client-item" href="https://x.com/Mald1sFNBR" target="_blank">
         <div class="pfp"><img src="malpfp.jpg" alt="Maldis"></div>
         <span class="cname">Maldis</span>
       </a>
-      <a class="client-node" href="https://x.com/Evolvedfnx" target="_blank">
+      <a class="client-item" href="https://x.com/Evolvedfnx" target="_blank">
         <div class="pfp"><img src="evopfp.jpg" alt="Evolved"></div>
         <span class="cname">Evolved</span>
       </a>
-      <a class="client-node" href="https://x.com/Aimreddd" target="_blank">
+      <a class="client-item" href="https://x.com/Aimreddd" target="_blank">
         <div class="pfp"><img src="aimpfp.jpg" alt="Aimred"></div>
         <span class="cname">Aimred</span>
       </a>
-      <a class="client-node" href="https://x.com/28wheat" target="_blank">
+      <a class="client-item" href="https://x.com/28wheat" target="_blank">
         <div class="pfp"><img src="wheatpfp.jpg" alt="Wheat"></div>
         <span class="cname">Wheat</span>
       </a>
-      <a class="client-node" href="https://x.com/FinnFn_" target="_blank">
+      <a class="client-item" href="https://x.com/FinnFn_" target="_blank">
         <div class="pfp"><img src="finnpfp.jpg" alt="Finn"></div>
         <span class="cname">Finn</span>
       </a>
-      <a class="client-node" href="https://x.com/auvahalo" target="_blank">
+      <a class="client-item" href="https://x.com/auvahalo" target="_blank">
         <div class="pfp"><img src="auvapfp.jpg" alt="Auvahalo"></div>
         <span class="cname">Auvahalo</span>
       </a>
-      <a class="client-node" href="https://x.com/noia_gg" target="_blank">
+      <a class="client-item" href="https://x.com/noia_gg" target="_blank">
         <div class="pfp"><img src="noiapfp.jpg" alt="Noia"></div>
         <span class="cname">Noia</span>
       </a>
-      <a class="client-node" href="https://x.com/ghonzofn" target="_blank">
+      <a class="client-item" href="https://x.com/ghonzofn" target="_blank">
         <div class="pfp"><img src="ghonpfp.jpg" alt="Ghonzo"></div>
         <span class="cname">Ghonzo</span>
       </a>
-      <a class="client-node" href="https://x.com/Trooly77" target="_blank">
+      <a class="client-item" href="https://x.com/Trooly77" target="_blank">
         <div class="pfp"><img src="troolypfp.jpg" alt="Trooly"></div>
         <span class="cname">Trooly</span>
       </a>
-      <a class="client-node" href="https://x.com/RashFNBR" target="_blank">
-        <div class="pfp"><img src="rashpfp.jpg" alt="Rash"></div>
-        <span class="cname">Rash</span>
-      </a>
-      <!-- Duplicate client nodes for seamless loop -->
-      <a class="client-node" href="https://x.com/Asafnr" target="_blank">
-        <div class="pfp"><img src="asapfp.jpg" alt="Asa"></div>
-        <span class="cname">Asa</span>
-      </a>
-      <a class="client-node" href="https://x.com/fastroki" target="_blank">
-        <div class="pfp"><img src="fastrokipfp.jpg" alt="Fastroki"></div>
-        <span class="cname">Fastroki</span>
-      </a>
-      <a class="client-node" href="https://x.com/F1N4IK22" target="_blank">
-        <div class="pfp"><img src="f1npfp.jpg" alt="F1N4IK"></div>
-        <span class="cname">F1N4IK</span>
-      </a>
-      <a class="client-node" href="https://x.com/Rezyfnxx" target="_blank">
-        <div class="pfp"><img src="rezypfp.jpg" alt="Rezy"></div>
-        <span class="cname">Rezy</span>
-      </a>
-      <a class="client-node" href="https://x.com/kantrifnn" target="_blank">
-        <div class="pfp"><img src="kantripfp.jpg" alt="Kantri"></div>
-        <span class="cname">Kantri</span>
-      </a>
-      <a class="client-node" href="https://x.com/DeyyFN" target="_blank">
-        <div class="pfp"><img src="deyypfp.jpg" alt="Deyy"></div>
-        <span class="cname">Deyy</span>
-      </a>
-      <a class="client-node" href="https://x.com/NeFrizi" target="_blank">
-        <div class="pfp"><img src="nefrizipfp.jpg" alt="NeFrizi"></div>
-        <span class="cname">NeFrizi</span>
-      </a>
-      <a class="client-node" href="https://x.com/Spexxfnr" target="_blank">
-        <div class="pfp"><img src="spexpfp.jpg" alt="Spexx"></div>
-        <span class="cname">Spexx</span>
-      </a>
-      <a class="client-node" href="https://x.com/Flokito_" target="_blank">
-        <div class="pfp"><img src="flokpfp.jpg" alt="Flokito"></div>
-        <span class="cname">Flokito</span>
-      </a>
-      <a class="client-node" href="https://x.com/dandepuzo" target="_blank">
-        <div class="pfp"><img src="dandepfp.jpg" alt="dandepuzo"></div>
-        <span class="cname">Dandepuzo</span>
-      </a>
-      <a class="client-node" href="https://x.com/Rad3on2" target="_blank">
-        <div class="pfp"><img src="radpfp.jpg" alt="Rad3on"></div>
-        <span class="cname">Rad3on</span>
-      </a>
-      <a class="client-node" href="https://x.com/skrillgaard" target="_blank">
-        <div class="pfp"><img src="skrillpfp.jpg" alt="Skrillgaard"></div>
-        <span class="cname">Skrillgaard</span>
-      </a>
-      <a class="client-node" href="https://x.com/slepzi300" target="_blank">
-        <div class="pfp"><img src="slepzipfp.jpg" alt="Slepzi"></div>
-        <span class="cname">Slepzi</span>
-      </a>
-      <a class="client-node" href="https://x.com/BirkFNBR" target="_blank">
-        <div class="pfp"><img src="birkpfp.jpg" alt="Birk"></div>
-        <span class="cname">Birk</span>
-      </a>
-      <a class="client-node" href="https://x.com/Mald1sFNBR" target="_blank">
-        <div class="pfp"><img src="malpfp.jpg" alt="Maldis"></div>
-        <span class="cname">Maldis</span>
-      </a>
-      <a class="client-node" href="https://x.com/Evolvedfnx" target="_blank">
-        <div class="pfp"><img src="evopfp.jpg" alt="Evolved"></div>
-        <span class="cname">Evolved</span>
-      </a>
-      <a class="client-node" href="https://x.com/Aimreddd" target="_blank">
-        <div class="pfp"><img src="aimpfp.jpg" alt="Aimred"></div>
-        <span class="cname">Aimred</span>
-      </a>
-      <a class="client-node" href="https://x.com/28wheat" target="_blank">
-        <div class="pfp"><img src="wheatpfp.jpg" alt="Wheat"></div>
-        <span class="cname">Wheat</span>
-      </a>
-      <a class="client-node" href="https://x.com/FinnFn_" target="_blank">
-        <div class="pfp"><img src="finnpfp.jpg" alt="Finn"></div>
-        <span class="cname">Finn</span>
-      </a>
-      <a class="client-node" href="https://x.com/auvahalo" target="_blank">
-        <div class="pfp"><img src="auvapfp.jpg" alt="Auvahalo"></div>
-        <span class="cname">Auvahalo</span>
-      </a>
-      <a class="client-node" href="https://x.com/noia_gg" target="_blank">
-        <div class="pfp"><img src="noiapfp.jpg" alt="Noia"></div>
-        <span class="cname">Noia</span>
-      </a>
-      <a class="client-node" href="https://x.com/ghonzofn" target="_blank">
-        <div class="pfp"><img src="ghonpfp.jpg" alt="Ghonzo"></div>
-        <span class="cname">Ghonzo</span>
-      </a>
-      <a class="client-node" href="https://x.com/Trooly77" target="_blank">
-        <div class="pfp"><img src="troolypfp.jpg" alt="Trooly"></div>
-        <span class="cname">Trooly</span>
-      </a>
-      <a class="client-node" href="https://x.com/RashFNBR" target="_blank">
+      <a class="client-item" href="https://x.com/RashFNBR" target="_blank">
         <div class="pfp"><img src="rashpfp.jpg" alt="Rash"></div>
         <span class="cname">Rash</span>
       </a>
@@ -1382,6 +1231,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.lazy-img').forEach(img => imgObs.observe(img));
   document.querySelectorAll('iframe').forEach(f => f.setAttribute('loading', 'lazy'));
+
+  // Duplicate client items for infinite loop
+  const sliderInner = document.querySelector('.clients-slider-inner');
+  const clientItems = document.querySelectorAll('.client-item');
+  clientItems.forEach(item => {
+    const clone = item.cloneNode(true);
+    sliderInner.appendChild(clone);
+  });
 });
 // supabase
 const { createClient } = supabase;
