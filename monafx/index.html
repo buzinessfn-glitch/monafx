@@ -270,18 +270,27 @@ h2{
 }
 
 /* ---- clients MONA shape ---- */
-.mona-layout{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:36px;
-  width:100%;
+.clients-slider {
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
 }
 
-.mona-row{
-  display:flex;
-  justify-content:center;
-  gap:32px;
+.clients-slider-inner {
+  display: flex;
+  width: fit-content;
+  animation: slide 30s linear infinite;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* Pinboard Client Styling */
@@ -298,6 +307,8 @@ h2{
   box-shadow:3px 5px 15px rgba(255, 255, 255, 0.6);
   position:relative;
   transition:.3s var(--ease);
+  margin-right: 20px;
+  flex-shrink: 0;
 }
 
 /* The pushpin */
@@ -1007,8 +1018,9 @@ footer p {
 
 <section id="clients" class="reveal">
   <h2>Clients</h2>
-  <div class="mona-layout">
-    <div class="mona-row">
+  <div class="clients-slider">
+    <div class="clients-slider-inner">
+      <!-- Original client nodes -->
       <a class="client-node" href="https://x.com/Asafnr" target="_blank">
         <div class="pfp"><img src="asapfp.jpg" alt="Asa"></div>
         <span class="cname">Asa</span>
@@ -1033,8 +1045,6 @@ footer p {
         <div class="pfp"><img src="deyypfp.jpg" alt="Deyy"></div>
         <span class="cname">Deyy</span>
       </a>
-    </div>
-    <div class="mona-row" style="margin-top:-6px">
       <a class="client-node" href="https://x.com/NeFrizi" target="_blank">
         <div class="pfp"><img src="nefrizipfp.jpg" alt="NeFrizi"></div>
         <span class="cname">NeFrizi</span>
@@ -1055,9 +1065,6 @@ footer p {
         <div class="pfp"><img src="radpfp.jpg" alt="Rad3on"></div>
         <span class="cname">Rad3on</span>
       </a>
-    </div>
-    <div style="height:12px"></div>
-    <div class="mona-row">
       <a class="client-node" href="https://x.com/skrillgaard" target="_blank">
         <div class="pfp"><img src="skrillpfp.jpg" alt="Skrillgaard"></div>
         <span class="cname">Skrillgaard</span>
@@ -1074,8 +1081,6 @@ footer p {
         <div class="pfp"><img src="malpfp.jpg" alt="Maldis"></div>
         <span class="cname">Maldis</span>
       </a>
-    </div>
-    <div class="mona-row" style="margin-top:-6px">
       <a class="client-node" href="https://x.com/Evolvedfnx" target="_blank">
         <div class="pfp"><img src="evopfp.jpg" alt="Evolved"></div>
         <span class="cname">Evolved</span>
@@ -1092,9 +1097,6 @@ footer p {
         <div class="pfp"><img src="finnpfp.jpg" alt="Finn"></div>
         <span class="cname">Finn</span>
       </a>
-    </div>
-    <div style="height:12px"></div>
-    <div class="mona-row">
       <a class="client-node" href="https://x.com/auvahalo" target="_blank">
         <div class="pfp"><img src="auvapfp.jpg" alt="Auvahalo"></div>
         <span class="cname">Auvahalo</span>
@@ -1103,11 +1105,108 @@ footer p {
         <div class="pfp"><img src="noiapfp.jpg" alt="Noia"></div>
         <span class="cname">Noia</span>
       </a>
-      <div style="width:44px"></div><a class="client-node" href="https://x.com/ghonzofn" target="_blank">
+      <a class="client-node" href="https://x.com/ghonzofn" target="_blank">
         <div class="pfp"><img src="ghonpfp.jpg" alt="Ghonzo"></div>
         <span class="cname">Ghonzo</span>
       </a>
-      <div style="width:44px"></div><a class="client-node" href="https://x.com/Trooly77" target="_blank">
+      <a class="client-node" href="https://x.com/Trooly77" target="_blank">
+        <div class="pfp"><img src="troolypfp.jpg" alt="Trooly"></div>
+        <span class="cname">Trooly</span>
+      </a>
+      <a class="client-node" href="https://x.com/RashFNBR" target="_blank">
+        <div class="pfp"><img src="rashpfp.jpg" alt="Rash"></div>
+        <span class="cname">Rash</span>
+      </a>
+      <!-- Duplicate client nodes for seamless loop -->
+      <a class="client-node" href="https://x.com/Asafnr" target="_blank">
+        <div class="pfp"><img src="asapfp.jpg" alt="Asa"></div>
+        <span class="cname">Asa</span>
+      </a>
+      <a class="client-node" href="https://x.com/fastroki" target="_blank">
+        <div class="pfp"><img src="fastrokipfp.jpg" alt="Fastroki"></div>
+        <span class="cname">Fastroki</span>
+      </a>
+      <a class="client-node" href="https://x.com/F1N4IK22" target="_blank">
+        <div class="pfp"><img src="f1npfp.jpg" alt="F1N4IK"></div>
+        <span class="cname">F1N4IK</span>
+      </a>
+      <a class="client-node" href="https://x.com/Rezyfnxx" target="_blank">
+        <div class="pfp"><img src="rezypfp.jpg" alt="Rezy"></div>
+        <span class="cname">Rezy</span>
+      </a>
+      <a class="client-node" href="https://x.com/kantrifnn" target="_blank">
+        <div class="pfp"><img src="kantripfp.jpg" alt="Kantri"></div>
+        <span class="cname">Kantri</span>
+      </a>
+      <a class="client-node" href="https://x.com/DeyyFN" target="_blank">
+        <div class="pfp"><img src="deyypfp.jpg" alt="Deyy"></div>
+        <span class="cname">Deyy</span>
+      </a>
+      <a class="client-node" href="https://x.com/NeFrizi" target="_blank">
+        <div class="pfp"><img src="nefrizipfp.jpg" alt="NeFrizi"></div>
+        <span class="cname">NeFrizi</span>
+      </a>
+      <a class="client-node" href="https://x.com/Spexxfnr" target="_blank">
+        <div class="pfp"><img src="spexpfp.jpg" alt="Spexx"></div>
+        <span class="cname">Spexx</span>
+      </a>
+      <a class="client-node" href="https://x.com/Flokito_" target="_blank">
+        <div class="pfp"><img src="flokpfp.jpg" alt="Flokito"></div>
+        <span class="cname">Flokito</span>
+      </a>
+      <a class="client-node" href="https://x.com/dandepuzo" target="_blank">
+        <div class="pfp"><img src="dandepfp.jpg" alt="dandepuzo"></div>
+        <span class="cname">Dandepuzo</span>
+      </a>
+      <a class="client-node" href="https://x.com/Rad3on2" target="_blank">
+        <div class="pfp"><img src="radpfp.jpg" alt="Rad3on"></div>
+        <span class="cname">Rad3on</span>
+      </a>
+      <a class="client-node" href="https://x.com/skrillgaard" target="_blank">
+        <div class="pfp"><img src="skrillpfp.jpg" alt="Skrillgaard"></div>
+        <span class="cname">Skrillgaard</span>
+      </a>
+      <a class="client-node" href="https://x.com/slepzi300" target="_blank">
+        <div class="pfp"><img src="slepzipfp.jpg" alt="Slepzi"></div>
+        <span class="cname">Slepzi</span>
+      </a>
+      <a class="client-node" href="https://x.com/BirkFNBR" target="_blank">
+        <div class="pfp"><img src="birkpfp.jpg" alt="Birk"></div>
+        <span class="cname">Birk</span>
+      </a>
+      <a class="client-node" href="https://x.com/Mald1sFNBR" target="_blank">
+        <div class="pfp"><img src="malpfp.jpg" alt="Maldis"></div>
+        <span class="cname">Maldis</span>
+      </a>
+      <a class="client-node" href="https://x.com/Evolvedfnx" target="_blank">
+        <div class="pfp"><img src="evopfp.jpg" alt="Evolved"></div>
+        <span class="cname">Evolved</span>
+      </a>
+      <a class="client-node" href="https://x.com/Aimreddd" target="_blank">
+        <div class="pfp"><img src="aimpfp.jpg" alt="Aimred"></div>
+        <span class="cname">Aimred</span>
+      </a>
+      <a class="client-node" href="https://x.com/28wheat" target="_blank">
+        <div class="pfp"><img src="wheatpfp.jpg" alt="Wheat"></div>
+        <span class="cname">Wheat</span>
+      </a>
+      <a class="client-node" href="https://x.com/FinnFn_" target="_blank">
+        <div class="pfp"><img src="finnpfp.jpg" alt="Finn"></div>
+        <span class="cname">Finn</span>
+      </a>
+      <a class="client-node" href="https://x.com/auvahalo" target="_blank">
+        <div class="pfp"><img src="auvapfp.jpg" alt="Auvahalo"></div>
+        <span class="cname">Auvahalo</span>
+      </a>
+      <a class="client-node" href="https://x.com/noia_gg" target="_blank">
+        <div class="pfp"><img src="noiapfp.jpg" alt="Noia"></div>
+        <span class="cname">Noia</span>
+      </a>
+      <a class="client-node" href="https://x.com/ghonzofn" target="_blank">
+        <div class="pfp"><img src="ghonpfp.jpg" alt="Ghonzo"></div>
+        <span class="cname">Ghonzo</span>
+      </a>
+      <a class="client-node" href="https://x.com/Trooly77" target="_blank">
         <div class="pfp"><img src="troolypfp.jpg" alt="Trooly"></div>
         <span class="cname">Trooly</span>
       </a>
