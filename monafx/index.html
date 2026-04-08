@@ -1068,6 +1068,13 @@ footer p {
       <div class="work-item"><img src="monawork4.jpg" alt=""></div>
       <div class="work-item"><img src="monawork5.jpg" alt=""></div>
       <div class="work-item"><img src="monawork6.jpg" alt=""></div>
+      <div class="work-item"><img src="monawork7.jpg" alt=""></div>
+      <div class="work-item"><img src="monawork8.jpg" alt=""></div>
+      <div class="work-item"><img src="monawork9.jpg" alt=""></div>
+      <div class="work-item"><img src="monawork10.jpg" alt=""></div>
+      <div class="work-item"><img src="monawork11.jpg" alt=""></div>
+      <div class="work-item"><img src="monawork12.jpg" alt=""></div>
+      <div class="work-item"><img src="monawork13.jpg" alt=""></div>
     </div>
   </div>
   <div class="order-now-wrap">
@@ -1329,10 +1336,8 @@ async function loadAdminReviews(){
 }
 
 async function deleteReview(id){
-  // uses RPC to bypass RLS — see Supabase setup note below
   const { error } = await db.rpc("admin_delete_review", { review_id: id, admin_key: ADMIN_KEY });
   if(error){
-    // fallback: direct delete (works if RLS policy allows anon delete)
     const { error: e2 } = await db.from("monafx_reviews").delete().eq("id", id);
     if(e2){ alert("Delete failed. Check Supabase RLS policy.\n" + e2.message); return; }
   }
@@ -1343,53 +1348,16 @@ async function deleteReview(id){
 async function replyReview(id){
   const text = prompt("Write reply (leave blank to remove):");
   if(text === null) return;
-  // cancelled
   const replyText = text.trim() || null;
 
   const { error } = await db.rpc("admin_update_reply", { review_id: id, reply_text: replyText, admin_key: ADMIN_KEY });
   if(error){
-    // fallback: direct update
     const { error: e2 } = await db.from("monafx_reviews").update({ reply: replyText }).eq("id", id);
     if(e2){ alert("Reply failed. Check Supabase RLS policy.\n" + e2.message); return; }
   }
   loadAdminReviews();
   loadReviews();
 }
-
-/*
-  ── SUPABASE SETUP ──────────────────────────────────────────────────────────
-  The admin delete/reply run through two Postgres functions so the anon key
-  can bypass RLS.
-  Create these in Supabase → SQL Editor:
-
-  CREATE OR REPLACE FUNCTION admin_delete_review(review_id uuid, admin_key text)
-  RETURNS void LANGUAGE plpgsql SECURITY DEFINER AS $$
-  BEGIN
-    IF admin_key != 'MONAFX_ADMIN_ULTRA_9x7K2pL_2026_PRIVATE' THEN
-      RAISE EXCEPTION 'unauthorized';
-    END IF;
-    DELETE FROM monafx_reviews WHERE id = review_id;
-  END;
-  $$;
-  CREATE OR REPLACE FUNCTION admin_update_reply(review_id uuid, reply_text text, admin_key text)
-  RETURNS void LANGUAGE plpgsql SECURITY DEFINER AS $$
-  BEGIN
-    IF admin_key != 'MONAFX_ADMIN_ULTRA_9x7K2pL_2026_PRIVATE' THEN
-      RAISE EXCEPTION 'unauthorized';
-    END IF;
-    UPDATE monafx_reviews SET reply = reply_text WHERE id = review_id;
-  END;
-  $$;
-  Also make sure these RLS policies exist on monafx_reviews:
-    SELECT — allow anon
-    INSERT — allow anon
-  (DELETE and UPDATE are handled by the functions above, not needed as policies)
-
-  For monafx_review_codes:
-    SELECT — allow anon
-    UPDATE — allow anon (so used=true can be set on submission)
-  ────────────────────────────────────────────────────────────────────────────
-*/
 
 // close modals on backdrop click
 document.querySelectorAll('.modal-overlay').forEach(m => {
@@ -1403,23 +1371,17 @@ document.addEventListener('DOMContentLoaded', function() {
   const introBox = document.getElementById('intro-box');
   const body = document.body;
 
-  // Prevent scrolling during the animation
   body.style.overflow = 'hidden';
-
-  // Show the overlay
   introOverlay.classList.add('visible');
 
-  // Animate the box sliding in
   setTimeout(() => {
     introBox.classList.add('slide-in');
   }, 500);
 
-  // Fade out the overlay after the box has slid in
   setTimeout(() => {
     introOverlay.classList.add('fade-out');
   }, 1500);
 
-  // Hide the overlay completely and re-enable scrolling after fading out
   setTimeout(() => {
     introOverlay.classList.remove('visible');
     introOverlay.classList.add('hidden');
@@ -1457,12 +1419,12 @@ document.addEventListener('DOMContentLoaded', function() {
     { name: "Rash", img: "rashpfp.jpg", link: "https://x.com/RashFNBR" },
     { name: "Iggy", img: "iggypfp.jpg", link: "https://x.com/iggyfn6_" },
     { name: "Masn", img: "masnpfp.jpg", link: "https://x.com/Masnfn6" },
-    { name: "Twigz", img: "twigzpfp.jpg", link: "https://x.com/Twigzfn" }
+    { name: "Twigz", img: "twigzpfp.jpg", link: "https://x.com/Twigzfn" },
+    { name: "Mariuscow", img: "mariuspfp.jpg", link: "https://x.com/MariusCOW" }
   ];
 
   const track = document.querySelector('.clients-track');
 
-  // Shuffle the clients array to randomize order
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -1472,8 +1434,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   const shuffledClients = shuffle([...clientsData]);
-
-  // Duplicate the array to create a seamless loop
   const duplicatedClients = [...shuffledClients, ...shuffledClients];
 
   duplicatedClients.forEach(client => {
@@ -1488,16 +1448,13 @@ document.addEventListener('DOMContentLoaded', function() {
     track.appendChild(clientNode);
   });
 
-  // Apply the animation
   let position = 0;
-  const speed = 0.6; // pixels per frame
-  const updateInterval = 1000 / 60; // 60fps
+  const speed = 0.6;
 
   function updatePosition() {
     position -= speed;
     track.style.transform = `translateX(${position}px)`;
 
-    // Reset position when half of the duplicated list has scrolled
     if (position <= -track.offsetWidth / 2) {
       position = 0;
     }
